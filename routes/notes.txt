@@ -1,0 +1,9 @@
+1. to throw an error back using Error (next method if we are using async)
+const error = new Error("Couldn't find a place for the provided place id");
+error.code = 404;
+this will trigger the middlewear we wrote to handle the error in app.js
+return next(error);
+
+2. throwing error using new class we created.
+ const error = new HttpError("Couldn't find a place for the provided place id", 400);
+ return next(error);
