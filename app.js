@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 import { placesRouter, usersRouter } from "./routes";
 import { HttpError } from "./models";
@@ -34,6 +35,12 @@ app.use((error, req, res, next) => {
     message: error.message || "An unknown error occured",
   });
 });
+
+// connecting to db here
+mongoose
+  .connect()
+  .then(() => {})
+  .catch(error => console.log(error));
 
 app.listen(port, () => {
   console.log("listening on port 3008");
